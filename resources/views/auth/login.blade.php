@@ -135,9 +135,9 @@
                     @csrf
                     <div>
                         <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">Email Pengguna</label>
-                        <input type="text" id="email" name="email" value="{{ old('email', 'admin@sekolah.sch.id') }}" required autofocus
+                        <input type="text" id="email" name="email" value="{{ old('email') }}" required autofocus
                             class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/25 focus:border-emerald-600 transition placeholder:text-slate-400"
-                            placeholder="admin@sekolah.sch.id">
+                            placeholder="arrxptrr19@gmail.com">
                     </div>
 
                     <div>
@@ -146,7 +146,7 @@
                             <a href="#" onclick="alert('Silakan hubungi administrator sekolah untuk mereset kata sandi Anda.')" class="text-xs text-emerald-700 hover:text-emerald-800 font-semibold">Lupa password?</a>
                         </div>
                         <div class="relative">
-                            <input type="password" id="password" name="password" required value="password"
+                            <input type="password" id="password" name="password" required
                                 class="w-full px-4 py-3 pr-10 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/25 focus:border-emerald-600 transition placeholder:text-slate-400"
                                 placeholder="••••••••">
                             <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
@@ -184,17 +184,17 @@
 
                 <!-- Quick Test Login Credentials -->
                 <div class="mt-6 pt-5 border-t border-slate-100">
-                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center mb-2.5">Akun Demo Pengujian</p>
+                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center mb-2.5">Akun Pengujian Cepat</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button type="button" onclick="fillCredentials('admin@sekolah.sch.id', 'password')"
+                        <button type="button" onclick="fillCredentials('arrxptrr19@gmail.com', 'arya7777')"
                             class="p-2.5 rounded-lg border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 transition text-left group">
                             <span class="font-bold text-slate-800 block text-[11px] group-hover:text-emerald-700">Administrator</span>
-                            <span class="text-[10px] text-slate-500 block truncate">admin@sekolah.sch.id</span>
+                            <span class="text-[10px] text-slate-500 block truncate">arrxptrr19@gmail.com</span>
                         </button>
-                        <button type="button" onclick="fillCredentials('petugas@sekolah.sch.id', 'password')"
+                        <button type="button" onclick="fillCredentials('suteja77@gmail.com', 'suteja7777')"
                             class="p-2.5 rounded-lg border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 transition text-left group">
                             <span class="font-bold text-slate-800 block text-[11px] group-hover:text-emerald-700">Petugas Presensi</span>
-                            <span class="text-[10px] text-slate-500 block truncate">petugas@sekolah.sch.id</span>
+                            <span class="text-[10px] text-slate-500 block truncate">suteja77@gmail.com</span>
                         </button>
                     </div>
                 </div>
