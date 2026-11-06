@@ -16,25 +16,47 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Akun Pengguna (Admin & Petugas Absensi)
-        $admin = User::firstOrCreate(
-            ['email' => 'admin@sekolah.sch.id'],
-            [
-                'name' => 'Administrator',
-                'password' => Hash::make('password'),
+        $admin = User::where('email', 'admin@sekolah.sch.id')->first();
+        if ($admin) {
+            $admin->update([
+                'name' => 'Arya Putra',
+                'email' => 'arrxptrr19@gmail.com',
+                'password' => Hash::make('arya7777'),
                 'role' => 'admin',
                 'status' => 'aktif',
-            ]
-        );
+            ]);
+        } else {
+            $admin = User::updateOrCreate(
+                ['email' => 'arrxptrr19@gmail.com'],
+                [
+                    'name' => 'Arya Putra',
+                    'password' => Hash::make('arya7777'),
+                    'role' => 'admin',
+                    'status' => 'aktif',
+                ]
+            );
+        }
 
-        $petugas = User::firstOrCreate(
-            ['email' => 'petugas@sekolah.sch.id'],
-            [
-                'name' => 'Petugas Absensi (Budi S.)',
-                'password' => Hash::make('password'),
+        $petugas = User::where('email', 'petugas@sekolah.sch.id')->first();
+        if ($petugas) {
+            $petugas->update([
+                'name' => 'Suteja',
+                'email' => 'suteja77@gmail.com',
+                'password' => Hash::make('suteja7777'),
                 'role' => 'petugas',
                 'status' => 'aktif',
-            ]
-        );
+            ]);
+        } else {
+            $petugas = User::updateOrCreate(
+                ['email' => 'suteja77@gmail.com'],
+                [
+                    'name' => 'Suteja',
+                    'password' => Hash::make('suteja7777'),
+                    'role' => 'petugas',
+                    'status' => 'aktif',
+                ]
+            );
+        }
 
         // 2. Tahun Ajaran
         $tahun2026 = AcademicYear::firstOrCreate(

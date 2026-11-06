@@ -108,8 +108,8 @@ Akses aplikasi melalui browser di: `http://127.0.0.1:8000`
 
 | Peran (Role) | Email Login | Kata Sandi | Hak Akses |
 |---|---|---|---|
-| **Administrator** | `admin@sekolah.sch.id` | `password` | Akses penuh (Kelola akun, master rombel, siswa, absensi, kop sekolah, backup) |
-| **Petugas Absensi** | `petugas@sekolah.sch.id` | `password` | Input presensi, scanner QR, perbaikan absensi, rekap & cetak laporan |
+| **Administrator** | `arrxptrr19@gmail.com` | `arya7777` | Akses penuh (Kelola akun, master rombel, siswa, absensi, kop sekolah, backup) |
+| **Petugas Absensi** | `suteja77@gmail.com` | `suteja7777` | Input presensi, scanner QR, perbaikan absensi, rekap & cetak laporan |
 
 ---
 
