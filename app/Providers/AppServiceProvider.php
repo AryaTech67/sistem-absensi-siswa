@@ -27,8 +27,16 @@ class AppServiceProvider extends ServiceProvider
 
         // Pastikan akun admin & petugas selalu tersedia di database server
         try {
-            if (\Illuminate\Support\Facades\Schema::hasTable('users')) {
-                \App\Models\User::firstOrCreate(
+            $dbPath = database_path('database.sqlite');
+            if (config('database.default') === 'sqlite' && !file_exists($dbPath)) {
+                @touch($dbPath);
+            }
+
+            if (!\Illuminate\Support\Facades\Schema::hasTable('users')) {
+                \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+                \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+            } else {
+                \App\Models\User::updateOrCreate(
                     ['email' => 'arrxptrr19@gmail.com'],
                     [
                         'name' => 'Arya Putra',
@@ -38,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
                     ]
                 );
 
-                \App\Models\User::firstOrCreate(
+                \App\Models\User::updateOrCreate(
                     ['email' => 'suteja77@gmail.com'],
                     [
                         'name' => 'Suteja',
@@ -49,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
                 );
             }
         } catch (\Throwable $e) {
-            // abaikan jika tabel belum siap
+            \Illuminate\Support\Facades\Log::error('Auto DB setup error: ' . $e->getMessage());
         }
     }
 }
