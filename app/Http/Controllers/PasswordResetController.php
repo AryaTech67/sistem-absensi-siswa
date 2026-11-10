@@ -52,19 +52,27 @@ class PasswordResetController extends Controller
             ])->withInput($request->only('email'));
         }
 
-        // Kirim link reset melalui Password Broker Laravel
-        $status = Password::broker()->sendResetLink(
-            $request->only('email')
-        );
+        // Kirim link reset melalui Password Broker Laravel dengan penanganan error
+        try {
+            $status = Password::broker()->sendResetLink(
+                $request->only('email')
+            );
 
-        if ($status === Password::RESET_LINK_SENT) {
-            return back()
-                ->with('sent_email', $request->email);
+            if ($status === Password::RESET_LINK_SENT) {
+                return back()
+                    ->with('sent_email', $request->email);
+            }
+
+            return back()->withErrors([
+                'email' => 'Gagal mengirim email reset kata sandi. Mohon coba beberapa saat lagi.',
+            ])->withInput($request->only('email'));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Password reset email error: ' . $e->getMessage());
+
+            return back()->withErrors([
+                'email' => 'Server email tidak merespons (koneksi SMTP diblokir atau waktu habis). Silakan hubungi Administrator sekolah.',
+            ])->withInput($request->only('email'));
         }
-
-        return back()->withErrors([
-            'email' => 'Gagal mengirim email reset kata sandi. Mohon coba beberapa saat lagi.',
-        ])->withInput($request->only('email'));
     }
 
     /**
