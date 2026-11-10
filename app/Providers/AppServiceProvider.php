@@ -25,6 +25,16 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
+        // Selalu prioritaskan Resend via HTTPS (Port 443) jika API key disetel di server
+        if (env('RESEND_API_KEY')) {
+            config([
+                'mail.default' => 'resend',
+                'services.resend.key' => env('RESEND_API_KEY'),
+                'mail.from.address' => env('MAIL_FROM_ADDRESS', 'onboarding@resend.dev'),
+                'mail.from.name' => env('MAIL_FROM_NAME', "OnHadir SMK Darus Sa'adah"),
+            ]);
+        }
+
         // Pastikan akun admin & petugas selalu tersedia di database server
         try {
             $dbPath = database_path('database.sqlite');

@@ -70,7 +70,7 @@ class PasswordResetController extends Controller
             \Illuminate\Support\Facades\Log::error('Password reset email error: ' . $e->getMessage());
 
             return back()->withErrors([
-                'email' => 'Server email tidak merespons (koneksi SMTP diblokir atau waktu habis). Silakan hubungi Administrator sekolah.',
+                'email' => 'Kendala pengiriman: ' . $e->getMessage(),
             ])->withInput($request->only('email'));
         }
     }
