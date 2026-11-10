@@ -35,6 +35,7 @@ Proyek ini telah melalui audit dan **memenuhi 100% Kriteria Spesifikasi UKK (Uji
   - Ekspor multi-format: **Cetak PDF Resmi (Kop Surat Sekolah)**, **Microsoft Excel (.xls)**, dan **CSV**.
 - 🛡️ **Audit Trail & Keamanan Tingkat Tinggi**:
   - Role-Based Access Control (RBAC): **Administrator** vs **Petugas Absensi**.
+  - 🔐 **Sistem Pemulihan Akun & Lupa Sandi**: Integrasi transactional email via HTTPS API (Resend) dan SMTP dengan token berbatas waktu serta perlindungan dari brute-force.
   - Pencatatan log perubahan absensi (`attendance_audits`) untuk menelusuri riwayat revisi (status lama vs status baru, waktu, dan pelaku).
   - *Compound Unique Constraints* pada database untuk menjamin **nol duplikasi data**.
   - Perlindungan integritas: riwayat absensi kelas lampau tetap utuh saat siswa naik kelas (*historical retention*).
