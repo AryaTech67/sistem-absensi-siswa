@@ -73,7 +73,7 @@
                 </p>
                 <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-emerald-100/90 leading-relaxed">
                     <span class="font-semibold text-white block mb-1">Catatan Keamanan</span>
-                    Tautan pemulihan kata sandi memiliki masa kedaluwarsa 15 menit. Pastikan email yang dimasukkan telah didaftarkan oleh Administrator.
+                    Tautan pemulihan kata sandi memiliki masa kedaluwarsa 60 menit. Pastikan email yang dimasukkan telah didaftarkan oleh Administrator.
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
                     </div>
 
                     <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                        Tautan ini hanya berlaku selama <strong class="text-slate-700">15 menit</strong> demi alasan keamanan. Periksa juga folder <em>Spam</em> atau <em>Promosi</em> jika email tidak segera muncul.
+                        Tautan ini hanya berlaku selama <strong class="text-slate-700">60 menit</strong> demi alasan keamanan. Periksa juga folder <em>Spam</em> atau <em>Promosi</em> jika email tidak segera muncul.
                     </p>
 
                     <div class="space-y-3">
