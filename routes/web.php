@@ -6,6 +6,7 @@ use App\Http\Controllers\AttendanceScannerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RecapController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SchoolSettingController;
@@ -33,6 +34,12 @@ Route::get('/cek-presensi', [StudentController::class, 'publicCheck'])->name('pu
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+    // Alur Pemulihan Kata Sandi (Lupa Password)
+    Route::get('/forgot-password', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

@@ -72,4 +72,15 @@ class User extends Authenticatable
     {
         return $this->status === 'aktif';
     }
+
+    /**
+     * Kirim notifikasi reset kata sandi kustom.
+     *
+     * @param string $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new \App\Notifications\ResetPasswordNotification($token));
+    }
 }

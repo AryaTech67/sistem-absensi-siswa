@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+
+class ResetPasswordNotification extends Notification
+{
+    use Queueable;
+
+    /**
+     * The password reset token.
+     */
+    public string $token;
+
+    /**
+     * Create a new notification instance.
+     */
+    public function __construct(string $token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @return array<int, string>
+     */
+    public function via(object $notifiable): array
+    {
+        return ['mail'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     */
+    public function toMail(object $notifiable): MailMessage
+    {
+        $resetUrl = route('password.reset', [
+            'token' => $this->token,
+            'email' => $notifiable->getEmailForPasswordReset(),
+        ]);
+
+        $expire = config('auth.passwords.'.config('auth.defaults.passwords').'.expire', 60);
+
+        if (app()->environment('local') && config('mail.default') === 'log') {
+            session()->flash('dev_reset_url', $resetUrl);
+        }
+
+        return (new MailMessage)
+            ->subject('Permintaan Reset Kata Sandi — OnHadir SMK Darus Sa\'adah')
+            ->view('emails.reset-password', [
+                'user' => $notifiable,
+                'resetUrl' => $resetUrl,
+                'expireMinutes' => $expire,
+            ]);
+    }
+}

@@ -114,6 +114,13 @@
                 </div>
 
                 <!-- Alerts -->
+                @if(session('status'))
+                <div class="mb-5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>{{ session('status') }}</span>
+                </div>
+                @endif
+
                 @if(session('info'))
                 <div class="mb-5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium flex items-center space-x-2">
                     <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -121,7 +128,7 @@
                 </div>
                 @endif
 
-                @if($errors->has('email'))
+                @if(isset($errors) && $errors->has('email'))
                 <div class="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium flex items-center space-x-2">
                     <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -143,7 +150,7 @@
                     <div>
                         <div class="flex items-center justify-between mb-1.5">
                             <label for="password" class="block text-xs font-bold text-slate-700">Password</label>
-                            <a href="#" onclick="alert('Silakan hubungi administrator sekolah untuk mereset kata sandi Anda.')" class="text-xs text-emerald-700 hover:text-emerald-800 font-semibold">Lupa password?</a>
+                            <a href="{{ route('password.request') }}" class="text-xs text-emerald-700 hover:text-emerald-800 font-semibold transition">Lupa password?</a>
                         </div>
                         <div class="relative">
                             <input type="password" id="password" name="password" required
