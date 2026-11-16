@@ -127,10 +127,19 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-2 self-start sm:self-auto">
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 self-start sm:self-auto w-full sm:w-auto">
+                    <!-- Pencarian Cepat Siswa (Poin 4 Revisi) -->
+                    <div class="relative w-full sm:w-60">
+                        <input type="text" id="createStudentSearch" oninput="filterCreateStudentList()" placeholder="Cari nama atau NIS..."
+                            class="w-full pl-8 pr-3 py-2 rounded-xl border border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition bg-white shadow-2xs">
+                        <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+
                     <!-- Tombol Tandai Semua Hadir -->
                     <button type="button" onclick="markAllPresent()"
-                        class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm shadow-emerald-500/20 transition flex items-center space-x-1.5">
+                        class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm shadow-emerald-500/20 transition flex items-center justify-center space-x-1.5 shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
@@ -272,6 +281,19 @@
         const radios = document.querySelectorAll('input.status-radio[value="H"]');
         radios.forEach(radio => {
             radio.checked = true;
+        });
+    }
+
+    function filterCreateStudentList() {
+        const query = (document.getElementById('createStudentSearch')?.value || '').toLowerCase().trim();
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(r => {
+            const text = r.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+                r.style.display = '';
+            } else {
+                r.style.display = 'none';
+            }
         });
     }
 </script>

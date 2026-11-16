@@ -329,10 +329,39 @@
                         Wali Kelas: <strong class="text-slate-700">{{ $selectedClassroom->waliKelas->name ?? 'Belum Ditentukan' }}</strong> &bull; Sesi: <strong class="text-slate-800">{{ $sessionType === 'pulang' ? 'Sore (Pulang)' : 'Pagi (Masuk)' }}</strong>
                     </p>
                 </div>
-                <!-- Pencarian Cepat di Roster -->
-                <div class="w-full sm:w-44">
-                    <input type="text" id="rosterSearch" oninput="filterRoster()" placeholder="Cari nama/NIS..."
-                        class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-800 bg-white transition">
+            </div>
+
+            <!-- Menu Searching Cepat Siswa & Tombol Klik Proses (Poin 4 Revisi) -->
+            <div class="p-3 bg-emerald-50/50 border-b border-slate-200">
+                <label class="block text-[11px] font-bold text-slate-800 mb-1 flex items-center justify-between">
+                    <span class="flex items-center space-x-1.5">
+                        <svg class="w-3.5 h-3.5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <span>Cari Siswa untuk Input Presensi Cepat</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500 font-medium">Bisa tekan Enter atau klik tombol Proses</span>
+                </label>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                    <div class="relative flex-1">
+                        <input type="text" id="rosterSearch" oninput="handleRosterSearchInput(event)" onkeydown="handleRosterSearchKeyDown(event)"
+                            placeholder="Ketik nama siswa atau NIS yang mau absen..." autocomplete="off"
+                            class="w-full pl-9 pr-8 py-2 rounded-lg border border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white transition shadow-2xs">
+                        <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <button type="button" id="btnClearSearch" onclick="clearRosterSearch()" class="hidden absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <button type="button" onclick="triggerSearchProcess()" id="btnProcessSearch"
+                        class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition flex items-center justify-center space-x-1.5 shrink-0 active:scale-95"
+                        title="Klik untuk langsung memproses kehadiran siswa yang dicari">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>Klik Proses Hadir</span>
+                    </button>
                 </div>
             </div>
 
@@ -340,24 +369,25 @@
                 <table class="w-full text-left border-collapse text-xs">
                     <thead class="sticky top-0 bg-slate-100 border-b border-slate-200 text-[10px] font-semibold uppercase tracking-wider text-slate-500 z-10">
                         <tr>
-                            <th class="py-2.5 px-3.5 w-10 text-center">No</th>
-                            <th class="py-2.5 px-3.5 w-24">NIS</th>
-                            <th class="py-2.5 px-3.5">Nama Siswa</th>
-                            <th class="py-2.5 px-3.5 w-24 text-center">Status</th>
-                            <th class="py-2.5 px-3.5 text-right w-20">Waktu</th>
+                            <th class="py-2.5 px-3 w-10 text-center">No</th>
+                            <th class="py-2.5 px-3 w-20">NIS</th>
+                            <th class="py-2.5 px-3">Nama Siswa</th>
+                            <th class="py-2.5 px-3 w-24 text-center">Status</th>
+                            <th class="py-2.5 px-3 text-right w-16">Waktu</th>
+                            <th class="py-2.5 px-3 text-center w-32">Aksi Presensi</th>
                         </tr>
                     </thead>
                     <tbody id="rosterBody" class="divide-y divide-slate-100 font-medium">
                         @forelse($students as $st)
                         @php $rec = $attendances->get($st->id); @endphp
                         <tr id="row-student-{{ $st->nis }}" class="hover:bg-slate-50/80 transition {{ $rec && $rec->status == 'H' ? 'bg-emerald-50/30' : ($rec && $rec->status == 'T' ? 'bg-amber-50/40' : '') }}">
-                            <td class="py-2.5 px-3.5 text-center text-slate-400 text-xs">{{ $loop->iteration }}</td>
-                            <td class="py-2.5 px-3.5 text-slate-700 font-semibold student-nis text-xs">{{ $st->nis }}</td>
-                            <td class="py-2.5 px-3.5 font-semibold text-slate-900 student-name">
+                            <td class="py-2.5 px-3 text-center text-slate-400 text-xs">{{ $loop->iteration }}</td>
+                            <td class="py-2.5 px-3 text-slate-700 font-semibold student-nis text-xs">{{ $st->nis }}</td>
+                            <td class="py-2.5 px-3 font-semibold text-slate-900 student-name">
                                 {{ $st->name }}
                                 <span class="text-[10px] font-normal text-slate-400 block">{{ $st->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
                             </td>
-                            <td class="py-2.5 px-3.5 text-center" id="status-cell-{{ $st->nis }}">
+                            <td class="py-2.5 px-3 text-center" id="status-cell-{{ $st->nis }}">
                                 @if($rec && $rec->status == 'H')
                                     <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
                                         Hadir
@@ -374,14 +404,52 @@
                                     <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-sky-100 text-sky-800 border border-sky-200">
                                         Izin
                                     </span>
+                                @elseif($rec && $rec->status == 'A')
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-100 text-rose-800 border border-rose-200">
+                                        Alpa
+                                    </span>
                                 @else
                                     <span class="inline-block px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-400 border border-slate-200">
                                         Belum
                                     </span>
                                 @endif
                             </td>
-                            <td class="py-2.5 px-3.5 text-right text-xs text-slate-500 font-medium" id="time-cell-{{ $st->nis }}">
+                            <td class="py-2.5 px-3 text-right text-xs text-slate-500 font-medium" id="time-cell-{{ $st->nis }}">
                                 {{ $rec ? $rec->updated_at->format('H:i') : '-' }}
+                            </td>
+                            <!-- Tombol Klik Presensi Langsung (Poin 3 Revisi) -->
+                            <td class="py-2 px-3 text-center whitespace-nowrap" id="action-cell-{{ $st->nis }}">
+                                @if($rec)
+                                    <div class="inline-flex items-center space-x-1">
+                                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-bold text-emerald-800 bg-emerald-100/80 border border-emerald-200">
+                                            <svg class="w-3 h-3 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                            <span>Tercatat</span>
+                                        </span>
+                                        <button type="button" onclick="quickMarkDirect('{{ $st->nis }}', '{{ addslashes($st->name) }}', 'H')"
+                                            class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 transition" title="Klik untuk absen ulang">
+                                            Ulang
+                                        </button>
+                                    </div>
+                                @else
+                                    <div class="inline-flex items-center space-x-1">
+                                        <button type="button" onclick="quickMarkDirect('{{ $st->nis }}', '{{ addslashes($st->name) }}', 'H')"
+                                            class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] shadow-xs transition active:scale-95"
+                                            title="Klik untuk otomatis memasukkan & langsung memproses kehadiran siswa ini">
+                                            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                            </svg>
+                                            <span>Klik Hadir</span>
+                                        </button>
+                                        <button type="button" onclick="quickMarkDirect('{{ $st->nis }}', '{{ addslashes($st->name) }}', 'S')"
+                                            class="px-1.5 py-1 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold text-[10px] transition" title="Tandai Sakit">
+                                            S
+                                        </button>
+                                        <button type="button" onclick="quickMarkDirect('{{ $st->nis }}', '{{ addslashes($st->name) }}', 'I')"
+                                            class="px-1.5 py-1 rounded-md bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 font-bold text-[10px] transition" title="Tandai Izin">
+                                            I
+                                        </button>
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         @empty
@@ -574,11 +642,18 @@
         if (!code) return;
 
         input.value = '';
-        processScan(code);
+        processScan(code, 'H');
+    }
+
+    // Tombol Klik Langsung Presensi per Siswa (Poin 3 Revisi)
+    function quickMarkDirect(nis, name, status = 'H') {
+        if (isProcessing) return;
+        showAlert('warning', `Sedang memproses absensi untuk ${name}...`);
+        processScan(nis, status);
     }
 
     // Process Scan Request to Server
-    function processScan(code) {
+    function processScan(code, status = 'H') {
         isProcessing = true;
 
         fetch("{{ route('attendance.scanner.scan') }}", {
@@ -591,13 +666,14 @@
             body: JSON.stringify({
                 code: code,
                 classroom_id: classroomId,
-                session_type: sessionType
+                session_type: sessionType,
+                status: status
             })
         })
         .then(async response => {
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(data.message || 'Terjadi kesalahan saat memproses scan.');
+                throw new Error(data.message || 'Terjadi kesalahan saat memproses absensi.');
             }
             return data;
         })
@@ -621,8 +697,11 @@
             setTimeout(() => {
                 isProcessing = false;
                 const input = document.getElementById('manualNisInput');
-                if (input) input.focus({ preventScroll: true });
-            }, 1200);
+                const searchInput = document.getElementById('rosterSearch');
+                if (input && document.activeElement !== searchInput) {
+                    input.focus({ preventScroll: true });
+                }
+            }, 600);
         });
     }
 
@@ -684,19 +763,31 @@
     function updateRosterRow(student, time) {
         const row = document.getElementById('row-student-' + student.nis);
         if (row) {
-            row.classList.remove('row-scanned', 'row-late');
+            row.classList.remove('row-scanned', 'row-late', 'bg-emerald-50/30', 'bg-amber-50/40', 'bg-amber-50/30', 'bg-sky-50/30', 'bg-rose-50/30');
             void row.offsetWidth; // trigger reflow
 
-            if (student.is_late) {
+            if (student.status === 'T' || student.is_late) {
                 row.classList.add('row-late', 'bg-amber-50/50');
+            } else if (student.status === 'S') {
+                row.classList.add('bg-amber-50/40');
+            } else if (student.status === 'I') {
+                row.classList.add('bg-sky-50/40');
+            } else if (student.status === 'A') {
+                row.classList.add('bg-rose-50/40');
             } else {
                 row.classList.add('row-scanned', 'bg-emerald-50/50');
             }
 
             const statusCell = document.getElementById('status-cell-' + student.nis);
             if (statusCell) {
-                if (student.is_late) {
+                if (student.status === 'T' || student.is_late) {
                     statusCell.innerHTML = `<span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-100 text-amber-800 border border-amber-200" title="Terlambat ${student.late_minutes} menit">Telat ${student.late_minutes}m</span>`;
+                } else if (student.status === 'S') {
+                    statusCell.innerHTML = `<span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">Sakit</span>`;
+                } else if (student.status === 'I') {
+                    statusCell.innerHTML = `<span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-sky-100 text-sky-800 border border-sky-200">Izin</span>`;
+                } else if (student.status === 'A') {
+                    statusCell.innerHTML = `<span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-100 text-rose-800 border border-rose-200">Alpa</span>`;
                 } else {
                     statusCell.innerHTML = `<span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">Hadir</span>`;
                 }
@@ -704,7 +795,24 @@
 
             const timeCell = document.getElementById('time-cell-' + student.nis);
             if (timeCell) {
-                timeCell.textContent = time.substring(0, 5);
+                timeCell.textContent = time ? time.substring(0, 5) : '-';
+            }
+
+            const actionCell = document.getElementById('action-cell-' + student.nis);
+            if (actionCell) {
+                const safeName = student.name.replace(/'/g, "\\'");
+                actionCell.innerHTML = `
+                    <div class="inline-flex items-center space-x-1">
+                        <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-bold text-emerald-800 bg-emerald-100/80 border border-emerald-200">
+                            <svg class="w-3 h-3 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            <span>Tercatat</span>
+                        </span>
+                        <button type="button" onclick="quickMarkDirect('${student.nis}', '${safeName}', 'H')"
+                            class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 transition" title="Klik untuk absen ulang">
+                            Ulang
+                        </button>
+                    </div>
+                `;
             }
         }
     }
@@ -746,8 +854,75 @@
         }
     }
 
+    // Handler Pencarian Input & Filter Roster (Poin 4 Revisi)
+    function handleRosterSearchInput(e) {
+        const val = e.target.value;
+        const btnClear = document.getElementById('btnClearSearch');
+        if (btnClear) {
+            if (val.trim()) {
+                btnClear.classList.remove('hidden');
+            } else {
+                btnClear.classList.add('hidden');
+            }
+        }
+        filterRoster();
+    }
+
+    function handleRosterSearchKeyDown(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            triggerSearchProcess();
+        }
+    }
+
+    function clearRosterSearch() {
+        const input = document.getElementById('rosterSearch');
+        if (input) {
+            input.value = '';
+            const btnClear = document.getElementById('btnClearSearch');
+            if (btnClear) btnClear.classList.add('hidden');
+            filterRoster();
+            input.focus();
+        }
+    }
+
+    // Tombol Klik Proses untuk Hasil Pencarian (Poin 4 Revisi)
+    function triggerSearchProcess() {
+        const input = document.getElementById('rosterSearch');
+        const query = (input.value || '').trim();
+        if (!query) {
+            showAlert('error', 'Ketik nama siswa atau NIS terlebih dahulu pada kolom pencarian.');
+            input.focus();
+            return;
+        }
+
+        // Cari baris siswa pertama yang sedang tampil (matching query)
+        const rows = document.querySelectorAll('#rosterBody tr');
+        let matchedNis = null;
+        let matchedName = null;
+
+        for (let r of rows) {
+            if (r.style.display !== 'none') {
+                const nisEl = r.querySelector('.student-nis');
+                const nameEl = r.querySelector('.student-name');
+                if (nisEl) {
+                    matchedNis = nisEl.textContent.trim();
+                    matchedName = nameEl ? nameEl.childNodes[0].textContent.trim() : matchedNis;
+                    break;
+                }
+            }
+        }
+
+        if (matchedNis) {
+            quickMarkDirect(matchedNis, matchedName, 'H');
+        } else {
+            // Jika tidak ada di filter roster lokal, coba tembak langsung ke backend (bisa query NIS)
+            processScan(query, 'H');
+        }
+    }
+
     function filterRoster() {
-        const query = document.getElementById('rosterSearch').value.toLowerCase();
+        const query = (document.getElementById('rosterSearch')?.value || '').toLowerCase().trim();
         const rows = document.querySelectorAll('#rosterBody tr');
         rows.forEach(r => {
             const nameEl = r.querySelector('.student-name');
@@ -756,7 +931,7 @@
 
             const name = nameEl.textContent.toLowerCase();
             const nis = nisEl.textContent.toLowerCase();
-            if (name.includes(query) || nis.includes(query)) {
+            if (!query || name.includes(query) || nis.includes(query)) {
                 r.style.display = '';
             } else {
                 r.style.display = 'none';
@@ -764,11 +939,17 @@
         });
     }
 
-    // Auto-focus barcode input kembali setiap kali klik di luar input tanpa scroll
+    // Auto-focus barcode input kembali hanya jika user tidak sedang fokus di input search
     document.addEventListener('click', function(e) {
+        const searchInput = document.getElementById('rosterSearch');
+        if (searchInput && (e.target === searchInput || searchInput.contains(e.target))) {
+            return;
+        }
         if (!['INPUT', 'SELECT', 'BUTTON', 'A', 'TEXTAREA'].includes(e.target.tagName)) {
             const input = document.getElementById('manualNisInput');
-            if (input) input.focus({ preventScroll: true });
+            if (input && document.activeElement !== searchInput) {
+                input.focus({ preventScroll: true });
+            }
         }
     });
 

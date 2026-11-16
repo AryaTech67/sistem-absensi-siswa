@@ -10,31 +10,35 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 
 class ReportController extends Controller
 {
     /**
-     * Tampilkan halaman filter laporan absensi.
+     * Tampilkan halaman filter laporan absensi dengan validasi backend dan pagination.
      */
     public function index(Request $request): View
     {
-        $classrooms = Classroom::with('academicYear')->orderBy('id')->get();
+        // Validasi Backend (Poin 1 Revisi)
+        $request->validate([
+            'classroom_id' => ['nullable', 'exists:classrooms,id'],
+            'student_id' => ['nullable', 'exists:students,id'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+        ], [
+            'classroom_id.exists' => 'Rombongan belajar yang dipilih tidak valid di database.',
+            'student_id.exists' => 'Data siswa yang dipilih tidak valid di database.',
+            'start_date.date' => 'Format tanggal awal tidak valid.',
+            'end_date.date' => 'Format tanggal akhir tidak valid.',
+            'end_date.after_or_equal' => 'Tanggal akhir tidak boleh lebih awal dari tanggal awal.',
+        ]);
+
+        $classrooms = Classroom::with('academicYear')->orderBy('name')->get();
         $classroomId = $request->input('classroom_id');
         $studentId = $request->input('student_id');
         $startDate = $request->input('start_date', Carbon::today()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', Carbon::today()->toDateString());
-        if ($startDate && $endDate && $startDate > $endDate) {
-            $startDate = Carbon::today()->startOfMonth()->toDateString();
-            $endDate = Carbon::today()->toDateString();
-        }
-
-        // Validasi tanggal awal <= tanggal akhir (BR-08 & Skenario 12)
-        if ($startDate && $endDate && $startDate > $endDate) {
-            session()->flash('error', 'Tanggal awal tidak boleh lebih besar dari tanggal akhir. Filter rentang tanggal tidak valid dan ditolak.');
-            $startDate = Carbon::today()->startOfMonth()->toDateString();
-            $endDate = Carbon::today()->toDateString();
-        }
 
         $studentsQuery = Student::where('status', 'aktif');
         if ($classroomId) {
@@ -44,14 +48,28 @@ class ReportController extends Controller
 
         $reportData = $this->fetchReportData($classroomId, $studentId, $startDate, $endDate);
 
-        return view('reports.index', array_merge($reportData, [
+        // Pagination untuk Laporan (Poin 2 Revisi - 15 siswa per halaman)
+        $perPage = 15;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = array_slice($reportData['recapList'], ($currentPage - 1) * $perPage, $perPage);
+        $paginatedRecap = new LengthAwarePaginator(
+            $currentItems,
+            count($reportData['recapList']),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath(), 'query' => $request->query()]
+        );
+
+        return view('reports.index', [
+            'recapList' => $paginatedRecap,
+            'summary' => $reportData['summary'],
             'classrooms' => $classrooms,
             'studentsList' => $studentsList,
             'classroomId' => $classroomId,
             'studentId' => $studentId,
             'startDate' => $startDate,
             'endDate' => $endDate,
-        ]));
+        ]);
     }
 
     /**
@@ -59,14 +77,17 @@ class ReportController extends Controller
      */
     public function print(Request $request): View
     {
+        $request->validate([
+            'classroom_id' => ['nullable', 'exists:classrooms,id'],
+            'student_id' => ['nullable', 'exists:students,id'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+        ]);
+
         $classroomId = $request->input('classroom_id');
         $studentId = $request->input('student_id');
         $startDate = $request->input('start_date', Carbon::today()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', Carbon::today()->toDateString());
-        if ($startDate && $endDate && $startDate > $endDate) {
-            $startDate = Carbon::today()->startOfMonth()->toDateString();
-            $endDate = Carbon::today()->toDateString();
-        }
 
         $reportData = $this->fetchReportData($classroomId, $studentId, $startDate, $endDate);
         $selectedClassroom = $classroomId ? Classroom::with('academicYear')->find($classroomId) : null;
@@ -86,14 +107,17 @@ class ReportController extends Controller
      */
     public function exportExcel(Request $request): Response
     {
+        $request->validate([
+            'classroom_id' => ['nullable', 'exists:classrooms,id'],
+            'student_id' => ['nullable', 'exists:students,id'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+        ]);
+
         $classroomId = $request->input('classroom_id');
         $studentId = $request->input('student_id');
         $startDate = $request->input('start_date', Carbon::today()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', Carbon::today()->toDateString());
-        if ($startDate && $endDate && $startDate > $endDate) {
-            $startDate = Carbon::today()->startOfMonth()->toDateString();
-            $endDate = Carbon::today()->toDateString();
-        }
 
         $reportData = $this->fetchReportData($classroomId, $studentId, $startDate, $endDate);
         $selectedClassroom = $classroomId ? Classroom::with('academicYear')->find($classroomId) : null;
@@ -123,14 +147,17 @@ class ReportController extends Controller
      */
     public function exportCsv(Request $request): Response
     {
+        $request->validate([
+            'classroom_id' => ['nullable', 'exists:classrooms,id'],
+            'student_id' => ['nullable', 'exists:students,id'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+        ]);
+
         $classroomId = $request->input('classroom_id');
         $studentId = $request->input('student_id');
         $startDate = $request->input('start_date', Carbon::today()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', Carbon::today()->toDateString());
-        if ($startDate && $endDate && $startDate > $endDate) {
-            $startDate = Carbon::today()->startOfMonth()->toDateString();
-            $endDate = Carbon::today()->toDateString();
-        }
 
         $reportData = $this->fetchReportData($classroomId, $studentId, $startDate, $endDate);
         $filename = 'Laporan_Absensi_' . date('Ymd_His') . '.csv';

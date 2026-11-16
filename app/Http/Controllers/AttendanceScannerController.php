@@ -77,6 +77,21 @@ class AttendanceScannerController extends Controller
                 $percentage = $total > 0 ? round((($hadir + $terlambat) / $total) * 100, 1) : 0;
 
                 $stats = compact('total', 'hadir', 'terlambat', 'sakit', 'izin', 'alpa', 'percentage');
+
+                // Data JSON ringkas untuk auto-search & instant process di frontend
+                $studentsJson = $students->map(function ($st) use ($attendances) {
+                    $rec = $attendances->get($st->id);
+                    return [
+                        'id' => $st->id,
+                        'nis' => $st->nis,
+                        'name' => $st->name,
+                        'gender' => $st->gender,
+                        'photo_url' => $st->photo_url,
+                        'status' => $rec ? $rec->status : null,
+                        'status_label' => $rec ? $rec->status_label : 'Belum',
+                        'time' => $rec ? $rec->updated_at->format('H:i') : '-',
+                    ];
+                });
             }
         }
 
@@ -88,7 +103,8 @@ class AttendanceScannerController extends Controller
             'students',
             'attendances',
             'stats',
-            'schoolSetting'
+            'schoolSetting',
+            'studentsJson'
         ));
     }
 
@@ -98,25 +114,41 @@ class AttendanceScannerController extends Controller
     public function scan(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'code' => ['required', 'string'],
+            'code' => ['required', 'string', 'max:100'],
             'classroom_id' => ['required', 'exists:classrooms,id'],
             'session_type' => ['nullable', 'string', 'in:masuk,pulang'],
+            'status' => ['nullable', 'string', 'in:H,T,S,I,A'],
+            'notes' => ['nullable', 'string', 'max:255'],
+        ], [
+            'code.required' => 'Identitas barcode / NIS / nama siswa wajib diisi.',
+            'classroom_id.required' => 'Kelas wajib dipilih.',
+            'classroom_id.exists' => 'Kelas tidak terdaftar di database.',
         ]);
 
         $code = trim($validated['code']);
         $classroomId = $validated['classroom_id'];
         $sessionType = $validated['session_type'] ?? 'masuk';
+        $requestedStatus = $validated['status'] ?? 'H';
 
-        // Cari siswa berdasarkan NIS atau NISN
+        // 1. Cari siswa berdasarkan NIS, NISN, atau ID
         $student = Student::with('classroom')->where(function ($q) use ($code) {
             $q->where('nis', $code)
-              ->orWhere('nisn', $code);
+              ->orWhere('nisn', $code)
+              ->orWhere('id', $code);
         })->first();
+
+        // 2. Jika belum ketemu dengan NIS, cari berdasarkan nama siswa di kelas yang dipilih
+        if (!$student && strlen($code) >= 2) {
+            $student = Student::with('classroom')
+                ->where('classroom_id', $classroomId)
+                ->where('name', 'like', "%{$code}%")
+                ->first();
+        }
 
         if (!$student) {
             return response()->json([
                 'success' => false,
-                'message' => "Kartu/Kode [{$code}] tidak terdaftar dalam data siswa sekolah.",
+                'message' => "Data siswa dengan identitas/kode [{$code}] tidak ditemukan.",
             ], 404);
         }
 
@@ -154,7 +186,36 @@ class AttendanceScannerController extends Controller
         $now = now();
         $schoolSetting = SchoolSetting::get();
 
-        if ($sessionType === 'pulang') {
+        if (in_array($requestedStatus, ['S', 'I', 'A'])) {
+            // Pencatatan Manual Sakit / Izin / Alpa
+            $labels = ['S' => 'Sakit', 'I' => 'Izin', 'A' => 'Alpa'];
+            $defaultNote = $validated['notes'] ?? ($labels[$requestedStatus] . " (Dicatat Manual)");
+
+            $attendance = Attendance::updateOrCreate(
+                [
+                    'attendance_session_id' => $session->id,
+                    'student_id' => $student->id,
+                ],
+                [
+                    'status' => $requestedStatus,
+                    'late_minutes' => 0,
+                    'missed_periods' => null,
+                    'discipline_points' => 0,
+                    'compensation_task' => null,
+                    'compensation_status' => 'completed',
+                    'notes' => $defaultNote,
+                    'recorded_by' => auth()->id(),
+                ]
+            );
+
+            $message = "Status {$student->name} berhasil dicatat sebagai {$labels[$requestedStatus]}.";
+            $isLate = false;
+            $lateMinutes = 0;
+            $missedPeriods = null;
+            $disciplinePoints = 0;
+            $compensationTask = null;
+            $compensationStatus = 'completed';
+        } elseif ($sessionType === 'pulang') {
             // Sesi Pulang: Catat tap out
             $attendance = Attendance::updateOrCreate(
                 [

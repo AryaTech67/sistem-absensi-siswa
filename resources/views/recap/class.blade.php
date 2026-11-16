@@ -157,8 +157,8 @@
                 <tbody class="divide-y divide-slate-100 font-medium">
                     @forelse($recapStudents as $idx => $item)
                     <tr class="hover:bg-slate-50/70 transition">
-                        <td class="py-2.5 px-3.5 text-center text-slate-400 text-xs">
-                            {{ $loop->iteration }}
+                        <td class="py-2.5 px-3.5 text-center text-slate-400 text-xs font-semibold">
+                            {{ ($recapStudents->currentPage() - 1) * $recapStudents->perPage() + $loop->iteration }}
                         </td>
                         <td class="py-2.5 px-3.5 text-xs text-slate-600 font-medium">
                             {{ $item['student']->nis }}
@@ -206,6 +206,17 @@
                 </tbody>
             </table>
         </div>
+
+        @if($recapStudents->hasPages())
+        <div class="p-4 bg-slate-50/80 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-xs text-slate-500 font-medium">
+                Menampilkan data ke <strong class="text-slate-700">{{ $recapStudents->firstItem() ?? 0 }}</strong> - <strong class="text-slate-700">{{ $recapStudents->lastItem() ?? 0 }}</strong> dari total <strong class="text-slate-800">{{ $recapStudents->total() }}</strong> siswa
+            </div>
+            <div class="w-full sm:w-auto overflow-x-auto flex justify-center">
+                {{ $recapStudents->links() }}
+            </div>
+        </div>
+        @endif
     </div>
     @endif
 </div>

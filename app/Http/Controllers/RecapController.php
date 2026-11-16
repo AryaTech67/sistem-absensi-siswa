@@ -10,6 +10,7 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -20,6 +21,17 @@ class RecapController extends Controller
      */
     public function studentRecap(Request $request): View
     {
+        $request->validate([
+            'classroom_id' => ['nullable', 'exists:classrooms,id'],
+            'student_id' => ['nullable', 'exists:students,id'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+        ], [
+            'classroom_id.exists' => 'Kelas tidak valid.',
+            'student_id.exists' => 'Siswa tidak valid.',
+            'end_date.after_or_equal' => 'Tanggal akhir tidak boleh lebih awal dari tanggal awal.',
+        ]);
+
         $classrooms = Classroom::with('academicYear')->orderBy('id')->get();
         $selectedClassroomId = $request->input('classroom_id');
         $selectedStudentId = $request->input('student_id');
@@ -113,18 +125,20 @@ class RecapController extends Controller
      */
     public function classRecap(Request $request): View
     {
-        $classrooms = Classroom::with('academicYear')->orderBy('id')->get();
+        $request->validate([
+            'classroom_id' => ['nullable', 'exists:classrooms,id'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+        ], [
+            'classroom_id.exists' => 'Kelas tidak valid.',
+            'end_date.after_or_equal' => 'Tanggal akhir tidak boleh lebih awal dari tanggal awal.',
+        ]);
+
+        $classrooms = Classroom::with('academicYear')->orderBy('name')->get();
         $selectedClassroomId = $request->input('classroom_id', $classrooms->first()?->id);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $search = $request->input('search');
-
-        // Validasi tanggal awal <= tanggal akhir (BR-08 & Skenario 12)
-        if ($startDate && $endDate && $startDate > $endDate) {
-            session()->flash('error', 'Tanggal awal tidak boleh lebih besar dari tanggal akhir. Filter rentang tanggal tidak valid dan ditolak.');
-            $startDate = null;
-            $endDate = null;
-        }
 
         $selectedClassroom = null;
         $recapStudents = collect();
@@ -212,16 +226,28 @@ class RecapController extends Controller
             }
         }
 
-        return view('recap.class', compact(
-            'classrooms',
-            'selectedClassroomId',
-            'selectedClassroom',
-            'recapStudents',
-            'classAverages',
-            'startDate',
-            'endDate',
-            'search'
-        ));
+        // Pagination untuk Rekap Kelas (15 data per halaman)
+        $perPage = 15;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $recapStudents->slice(($currentPage - 1) * $perPage, $perPage)->values();
+        $paginatedRecapStudents = new LengthAwarePaginator(
+            $currentItems,
+            $recapStudents->count(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath(), 'query' => $request->query()]
+        );
+
+        return view('recap.class', [
+            'classrooms' => $classrooms,
+            'selectedClassroomId' => $selectedClassroomId,
+            'selectedClassroom' => $selectedClassroom,
+            'recapStudents' => $paginatedRecapStudents,
+            'classAverages' => $classAverages,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'search' => $search,
+        ]);
     }
 
     /**

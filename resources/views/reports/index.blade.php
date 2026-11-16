@@ -83,7 +83,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
         <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-xs">
             <span class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">Total Siswa</span>
-            <p class="text-xl font-bold text-slate-900 mt-1">{{ count($recapList) }}</p>
+            <p class="text-xl font-bold text-slate-900 mt-1">{{ $recapList->total() }}</p>
         </div>
         <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-xs">
             <span class="text-[10px] font-semibold text-emerald-700 uppercase tracking-wider block">Total Hadir</span>
@@ -115,7 +115,7 @@
     <div class="bg-white rounded-xl border border-slate-200/90 shadow-xs overflow-hidden">
         <div class="p-3.5 bg-slate-50/70 border-b border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 font-medium">
             <span>Periode: <strong>{{ \Carbon\Carbon::parse($startDate)->isoFormat('D MMMM Y') }}</strong> - <strong>{{ \Carbon\Carbon::parse($endDate)->isoFormat('D MMMM Y') }}</strong></span>
-            <span>Total: {{ count($recapList) }} Siswa</span>
+            <span>Total: {{ $recapList->total() }} Siswa &bull; Halaman {{ $recapList->currentPage() }} dari {{ $recapList->lastPage() }}</span>
         </div>
 
         <div class="overflow-x-auto">
@@ -138,8 +138,8 @@
                 <tbody class="divide-y divide-slate-100 font-medium">
                     @forelse($recapList as $idx => $row)
                     <tr class="hover:bg-slate-50/70 transition">
-                        <td class="py-2.5 px-3.5 text-center text-slate-400 text-xs">
-                            {{ $loop->iteration }}
+                        <td class="py-2.5 px-3.5 text-center text-slate-400 text-xs font-semibold">
+                            {{ ($recapList->currentPage() - 1) * $recapList->perPage() + $loop->iteration }}
                         </td>
                         <td class="py-2.5 px-3.5 text-xs text-slate-600 font-medium">
                             {{ $row['student']->nis }}
@@ -184,6 +184,18 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Pagination Bar (Poin 2 Revisi) -->
+        @if($recapList->hasPages())
+        <div class="p-4 bg-slate-50/80 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-xs text-slate-500 font-medium">
+                Menampilkan data ke <strong class="text-slate-700">{{ $recapList->firstItem() ?? 0 }}</strong> - <strong class="text-slate-700">{{ $recapList->lastItem() ?? 0 }}</strong> dari total <strong class="text-slate-800">{{ $recapList->total() }}</strong> siswa
+            </div>
+            <div class="w-full sm:w-auto overflow-x-auto flex justify-center">
+                {{ $recapList->links() }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

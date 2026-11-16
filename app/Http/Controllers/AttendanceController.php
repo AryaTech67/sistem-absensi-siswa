@@ -111,13 +111,29 @@ class AttendanceController extends Controller
             'attendances.*.notes' => ['nullable', 'string', 'max:255'],
         ], [
             'classroom_id.required' => 'Rombongan belajar wajib dipilih.',
+            'classroom_id.exists' => 'Rombongan belajar tidak ditemukan dalam sistem.',
             'attendance_date.required' => 'Tanggal absensi wajib ditentukan.',
-            'attendances.required' => 'Belum ada siswa yang diabsen.',
+            'attendance_date.date' => 'Format tanggal absensi tidak valid.',
+            'session_name.required' => 'Sesi absensi wajib dipilih.',
+            'attendances.required' => 'Belum ada data siswa yang diabsen.',
+            'attendances.*.student_id.required' => 'ID siswa wajib disertakan.',
+            'attendances.*.student_id.exists' => 'Siswa tidak terdaftar di database sekolah.',
+            'attendances.*.status.required' => 'Status kehadiran setiap siswa wajib dipilih.',
+            'attendances.*.status.in' => 'Status kehadiran tidak valid (harus H, T, S, I, atau A).',
+            'attendances.*.notes.max' => 'Catatan maksimal 255 karakter.',
         ]);
 
         $classroomId = $request->input('classroom_id');
         $attendanceDate = $request->input('attendance_date');
         $sessionName = $request->input('session_name');
+
+        // Validasi Backend: pastikan seluruh siswa terdaftar pada kelas yang dipilih
+        $validStudentIds = Student::where('classroom_id', $classroomId)->pluck('id')->toArray();
+        foreach ($request->input('attendances') as $att) {
+            if (!in_array($att['student_id'], $validStudentIds)) {
+                return back()->with('error', 'Validasi gagal: Terdapat siswa yang tidak terdaftar di rombongan belajar ini.')->withInput();
+            }
+        }
 
         // Mencegah duplikasi data absensi (BR-04)
         $existingSession = AttendanceSession::where('classroom_id', $classroomId)
