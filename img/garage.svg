@@ -1,0 +1,45 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0C110F"/>
+  <defs>
+    <radialGradient id="garageGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D68F" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0C110F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2520"/>
+      <stop offset="100%" stop-color="#0E1613"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#garageGlow)"/>
+  
+  <!-- Grid overlay -->
+  <g stroke="#1F2E27" stroke-width="1" opacity="0.4">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+
+  <!-- Car outline / silhouette in garage -->
+  <g transform="translate(240, 150)">
+    <path d="M40 140 C80 130 120 70 170 65 L270 65 C320 70 360 130 400 140 L440 150 C460 160 460 180 440 190 L30 190 C10 180 10 160 40 140 Z" fill="url(#metalGrad)" stroke="#00D68F" stroke-width="2"/>
+    <circle cx="110" cy="195" r="35" fill="#070A09" stroke="#00D68F" stroke-width="3"/>
+    <circle cx="110" cy="195" r="16" fill="#15211C" stroke="#00D68F" stroke-width="1.5"/>
+    <circle cx="340" cy="195" r="35" fill="#070A09" stroke="#00D68F" stroke-width="3"/>
+    <circle cx="340" cy="195" r="16" fill="#15211C" stroke="#00D68F" stroke-width="1.5"/>
+    <!-- Windshield -->
+    <polygon points="175,75 265,75 295,130 145,130" fill="#060908" stroke="#1F332B" stroke-width="1.5"/>
+    <!-- Neon Underglow -->
+    <ellipse cx="230" cy="210" rx="160" ry="12" fill="#00D68F" opacity="0.3" filter="blur(8px)"/>
+  </g>
+
+  <!-- Tech Badges inside Image -->
+  <g transform="translate(40, 420)">
+    <rect width="180" height="40" rx="20" fill="#0B1310" stroke="#1E2F27"/>
+    <circle cx="20" cy="20" r="5" fill="#00D68F"/>
+    <text x="35" y="24" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Garage IoT &amp; ERP</text>
+  </g>
+</svg>
