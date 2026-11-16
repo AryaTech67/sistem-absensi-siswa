@@ -422,30 +422,34 @@
 
                 <!-- Sertifikat -->
                 <div class="space-y-3">
-                    <h3 class="font-semibold text-zinc-200 font-mono">🎓 Sertifikat Terverifikasi:</h3>
+                    <h3 class="font-semibold text-zinc-200 font-mono flex items-center justify-between">
+                        <span>🎓 Sertifikat Resmi:</span>
+                        <span class="text-[10px] text-zinc-500 font-normal">1 Dokumen Terverifikasi</span>
+                    </h3>
 
-                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 flex items-center justify-between">
-                        <div>
-                            <div class="font-bold text-white">Fundamentals of UI Design</div>
-                            <div class="text-[11px] text-zinc-400">UI/UX Development Academy &bull; 2024</div>
+                    <!-- Sertifikat EXASTI 2.0 UNJ -->
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-white text-sm">Peserta Web App Competition &amp; Webinar Nasional</div>
+                                <div class="text-[11px] text-purple-400 font-semibold font-mono">EXASTI 2.0 &bull; Universitas Negeri Jakarta (UNJ)</div>
+                                <div class="text-[11px] text-zinc-400">Tema: <em>"Think Smart, Innovate Fast" (Vibe Coding)</em> &bull; Agustus &ndash; Oktober 2026</div>
+                            </div>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800 font-semibold whitespace-nowrap">Resmi UNJ</span>
                         </div>
-                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">Verified</span>
-                    </div>
 
-                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 flex items-center justify-between">
-                        <div>
-                            <div class="font-bold text-white">Microsoft Azure Fundamentals</div>
-                            <div class="text-[11px] text-zinc-400">Microsoft Learn Challenge &bull; 2024</div>
+                        <!-- Preview Image Sertifikat -->
+                        <div class="rounded-lg overflow-hidden border border-zinc-800 bg-black/40 group relative cursor-pointer" onclick="openCertModal()">
+                            <img src="img/sertifikat_exasti.jpg" alt="Sertifikat EXASTI 2.0 UNJ - Arya Putra Pratama" class="w-full h-44 object-cover object-center group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <span class="px-3 py-1.5 rounded-lg bg-zinc-900/95 text-white text-xs font-semibold border border-zinc-700 shadow">🔍 Klik untuk Perbesar</span>
+                            </div>
                         </div>
-                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">Verified</span>
-                    </div>
 
-                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 flex items-center justify-between">
-                        <div>
-                            <div class="font-bold text-white">Dasar Pemrograman Web</div>
-                            <div class="text-[11px] text-zinc-400">Dicoding Indonesia &bull; 2023</div>
+                        <div class="flex items-center justify-between text-[11px] pt-1">
+                            <span class="text-zinc-500">Penyelenggara: BEMP STI UNJ</span>
+                            <button onclick="openCertModal()" class="text-purple-400 hover:text-purple-300 font-semibold transition">Lihat Sertifikat Penuh &rarr;</button>
                         </div>
-                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">Verified</span>
                     </div>
                 </div>
             </div>
@@ -537,6 +541,24 @@
                 `
             }
         };
+
+        function openCertModal() {
+            document.getElementById('modal-title').textContent = "Sertifikat Resmi EXASTI 2.0 — UNJ";
+            document.getElementById('modal-content').innerHTML = `
+                <div class="space-y-3">
+                    <img src="img/sertifikat_exasti.jpg" alt="Sertifikat EXASTI 2.0" class="w-full rounded-xl border border-zinc-700 shadow-md">
+                    <div class="text-[11px] text-zinc-400 space-y-1 font-mono pt-1">
+                        <div><strong>Penerima:</strong> Arya Putra Pratama</div>
+                        <div><strong>Kategori:</strong> Peserta Webinar Nasional & Web App Competition (Vibe Coding)</div>
+                        <div><strong>Institusi Penyelenggara:</strong> Badan Eksekutif Mahasiswa Prodi Sistem & Teknologi Informasi, Universitas Negeri Jakarta (UNJ)</div>
+                        <div><strong>Periode Kegiatan:</strong> Agustus &ndash; Oktober 2026</div>
+                    </div>
+                </div>
+            `;
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
 
         function openModal(key) {
             const data = details[key];
