@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya Putra Pratama — Portofolio Proyek Siswa Magang RPL</title>
+    <link rel="icon" type="image/jpeg" href="img/profile.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            950: '#052e16',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #e6edf3;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .card-custom {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .card-custom:hover {
+            border-color: #58a6ff;
+        }
+        .tab-btn.active {
+            background-color: #238636;
+            color: #ffffff;
+            border-color: #2ea043;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto space-y-8">
+
+        <!-- Banner / Header Identitas Siswa Magang -->
+        <header class="card-custom rounded-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                <img src="img/profile.jpg" alt="Foto Siswa - Arya Putra Pratama" 
+                    class="w-24 h-24 rounded-2xl object-cover border-2 border-zinc-700 shadow-md">
+                
+                <div class="space-y-2 flex-1">
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Arya Putra Pratama</h1>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-700/60">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Siswa Magang / PKL Aktif (2026)
+                        </span>
+                    </div>
+
+                    <p class="text-sm text-zinc-300 font-medium">
+                        Rekayasa Perangkat Lunak (RPL) &bull; SMK Darus Sa'adah Bogor
+                    </p>
+
+                    <p class="text-xs text-zinc-400 leading-relaxed max-w-2xl">
+                        Portofolio pengumpulan proyek dan rekap aplikasi web yang dikembangkan untuk tugas praktik sekolah, persiapan Uji Kompetensi Keahlian (UKK), dan kegiatan magang industri. Seluruh proyek dilengkapi dokumentasi fungsional, akun login demo, dan kode sumber.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2 text-xs text-zinc-300">
+                        <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer" 
+                            class="inline-flex items-center gap-1.5 hover:text-white transition py-1 px-2.5 rounded bg-zinc-800/80 border border-zinc-700">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>github.com/AryaTech67</span>
+                        </a>
+                        <a href="mailto:arrxptrr19@gmail.com" 
+                            class="inline-flex items-center gap-1.5 hover:text-white transition py-1 px-2.5 rounded bg-zinc-800/80 border border-zinc-700">
+                            <span>✉️ arrxptrr19@gmail.com</span>
+                        </a>
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded bg-zinc-800/80 border border-zinc-700">
+                            <span>📞 0895-2923-1361</span>
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded bg-zinc-800/80 border border-zinc-700">
+                            <span>📍 Bogor, Jawa Barat</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ringkasan Logbook / Keterangan Penilaian Sekolah -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-zinc-800 text-center font-mono">
+                <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800">
+                    <div class="text-lg font-bold text-white">4</div>
+                    <div class="text-[11px] text-zinc-400">Proyek Web Selesai</div>
+                </div>
+                <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800">
+                    <div class="text-lg font-bold text-emerald-400">UKK RPL</div>
+                    <div class="text-[11px] text-zinc-400">OnHadir (Presensi QR)</div>
+                </div>
+                <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800">
+                    <div class="text-lg font-bold text-sky-400">EXASTI 2.0</div>
+                    <div class="text-[11px] text-zinc-400">Lomba Web UNJ</div>
+                </div>
+                <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800">
+                    <div class="text-lg font-bold text-amber-400">Ketua Kelas</div>
+                    <div class="text-[11px] text-zinc-400">XI RPL SMK DS</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="space-y-6">
+
+            <!-- Section Title & Filter -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h2 class="text-xl font-bold text-white tracking-tight">Daftar Aplikasi & Proyek Web</h2>
+                    <p class="text-xs text-zinc-400">Klik "Buka Live Web" atau "Lihat Repositori" untuk menguji langsung fitur aplikasi.</p>
+                </div>
+                <div class="inline-flex p-1 bg-zinc-900 border border-zinc-800 rounded-xl text-xs font-mono">
+                    <button onclick="filterProjects('all')" id="btn-all" class="tab-btn active px-3 py-1 rounded-lg transition font-medium">Semua (4)</button>
+                    <button onclick="filterProjects('sekolah')" id="btn-sekolah" class="tab-btn px-3 py-1 rounded-lg transition font-medium text-zinc-400 hover:text-white">Sekolah/UKK</button>
+                    <button onclick="filterProjects('lomba')" id="btn-lomba" class="tab-btn px-3 py-1 rounded-lg transition font-medium text-zinc-400 hover:text-white">Kompetisi</button>
+                </div>
+            </div>
+
+            <!-- Proyek 1: OnHadir (UKK RPL) -->
+            <article class="card-custom rounded-2xl overflow-hidden flex flex-col md:flex-row project-item" data-category="sekolah">
+                <div class="md:w-5/12 bg-black/40 p-4 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-zinc-800">
+                    <img src="img/onhadir.png" alt="Tampilan OnHadir" class="w-full h-48 object-cover object-top rounded-xl border border-zinc-700/80 shadow">
+                    <div class="w-full flex items-center justify-between pt-3 text-[11px] text-zinc-400 font-mono">
+                        <span>Aplikasi UKK Mandiri</span>
+                        <span class="text-emerald-400 font-semibold">Status: Siap Diuji</span>
+                    </div>
+                </div>
+
+                <div class="p-6 md:w-7/12 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <h3 class="text-lg font-bold text-white">OnHadir &mdash; Presensi QR & Smart Card</h3>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-700 font-semibold">Tugas Utama UKK</span>
+                        </div>
+                        <p class="text-xs text-zinc-300 leading-relaxed">
+                            Sistem presensi sekolah terpadu yang dirancang untuk mengatasi antrean absensi pagi siswa. Menggunakan pemindaian barcode/QR webcam di bawah 300ms, tombol input massal sekelas (1-klik hadir langsung), perhitungan keterlambatan dan poin kompensasi otomatis, portal mandiri orang tua, serta generator cetak kartu pelajar standar CR80 (8 kartu/A4).
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Laravel 11</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">SQLite / MySQL</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Tailwind CSS</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">HTML5-QRCode</span>
+                        </div>
+                    </div>
+
+                    <!-- Kredensial Penguji -->
+                    <div class="p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-xs font-mono space-y-1">
+                        <div class="text-zinc-300 font-semibold flex items-center gap-1.5">
+                            <span>🔑 Akun Demo Penguji:</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px]">
+                            <div>Admin: <span class="text-emerald-400">arrxptrr19@gmail.com</span> / <span class="text-zinc-200">arya7777</span></div>
+                            <div>Petugas: <span class="text-emerald-400">suteja77@gmail.com</span> / <span class="text-zinc-200">suteja7777</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Aksi -->
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <a href="https://github.com/AryaTech67/sistem-absensi-siswa" target="_blank" rel="noopener noreferrer"
+                            class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition inline-flex items-center gap-1.5 shadow">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>Repositori & Kode Lengkap</span>
+                        </a>
+                        <button onclick="openModal('onhadir')"
+                            class="px-3 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold transition border border-zinc-700">
+                            🔍 Lihat Fitur & Arsitektur
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyek 2: LaporKuy (Kompetisi UNJ) -->
+            <article class="card-custom rounded-2xl overflow-hidden flex flex-col md:flex-row project-item" data-category="lomba">
+                <div class="md:w-5/12 bg-black/40 p-4 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-zinc-800">
+                    <img src="img/laporkuy.png" alt="Tampilan LaporKuy" class="w-full h-48 object-cover object-top rounded-xl border border-zinc-700/80 shadow">
+                    <div class="w-full flex items-center justify-between pt-3 text-[11px] text-zinc-400 font-mono">
+                        <span>Lomba UNJ EXASTI 2.0</span>
+                        <span class="text-sky-400 font-semibold">Tim SyntaxError</span>
+                    </div>
+                </div>
+
+                <div class="p-6 md:w-7/12 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <h3 class="text-lg font-bold text-white">LaporKuy &mdash; Pengaduan Infrastruktur Warga</h3>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-sky-950 text-sky-300 border border-sky-700 font-semibold">Kompetisi Nasional</span>
+                        </div>
+                        <p class="text-xs text-zinc-300 leading-relaxed">
+                            Platform partisipasi warga berbasis PWA untuk pelaporan kerusakan fasilitas publik ke dinas kota. Dilengkapi validasi foto berbasis AI, filter pencegahan spam/duplikasi laporan radius 200m berbasis GPS, sistem gamifikasi poin warga, dan tracking tiket tindak lanjut instansi secara transparan.
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Next.js 14</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Supabase</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">TypeScript</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Tailwind CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <a href="https://github.com/AryaTech67/LaporKuy" target="_blank" rel="noopener noreferrer"
+                            class="px-4 py-2 rounded-xl bg-sky-700 hover:bg-sky-600 text-white font-bold text-xs transition inline-flex items-center gap-1.5 shadow">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>Repositori LaporKuy</span>
+                        </a>
+                        <button onclick="openModal('laporkuy')"
+                            class="px-3 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold transition border border-zinc-700">
+                            🔍 Detail Inovasi Lomba
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyek 3: Kedai Arya (POS & E-Commerce) -->
+            <article class="card-custom rounded-2xl overflow-hidden flex flex-col md:flex-row project-item" data-category="aplikasi">
+                <div class="md:w-5/12 bg-black/40 p-4 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-zinc-800">
+                    <img src="img/kedaiarya.png" alt="Tampilan Kedai Arya" class="w-full h-48 object-cover object-top rounded-xl border border-zinc-700/80 shadow">
+                    <div class="w-full flex items-center justify-between pt-3 text-[11px] text-zinc-400 font-mono">
+                        <span>Aplikasi Kasir / POS</span>
+                        <span class="text-amber-400 font-semibold">Tugas Portofolio</span>
+                    </div>
+                </div>
+
+                <div class="p-6 md:w-7/12 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <h3 class="text-lg font-bold text-white">Kedai Arya &mdash; Web Kasir & Order Kafe</h3>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-amber-950 text-amber-300 border border-amber-700 font-semibold">Point of Sales</span>
+                        </div>
+                        <p class="text-xs text-zinc-300 leading-relaxed">
+                            Aplikasi pemesanan digital dan operasional kasir untuk kedai kopi. Memiliki fitur manajemen menu, keranjang belanja interaktif berbasis AJAX tanpa reload, perhitungan subtotal dan diskon otomatis, hingga modul cetak struk pembayaran.
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">PHP Native / Laravel</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">MySQL</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">JavaScript AJAX</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Tailwind CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer"
+                            class="px-4 py-2 rounded-xl bg-amber-700 hover:bg-amber-600 text-white font-bold text-xs transition inline-flex items-center gap-1.5 shadow">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>Repositori GitHub</span>
+                        </a>
+                        <button onclick="openModal('kedaiarya')"
+                            class="px-3 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold transition border border-zinc-700">
+                            🔍 Detail Alur Transaksi
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyek 4: Sipenlat (Pra-UKK) -->
+            <article class="card-custom rounded-2xl overflow-hidden flex flex-col md:flex-row project-item" data-category="sekolah">
+                <div class="md:w-5/12 bg-black/40 p-4 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-zinc-800">
+                    <img src="img/sipenlat.png" alt="Tampilan Sipenlat" class="w-full h-48 object-cover object-top rounded-xl border border-zinc-700/80 shadow">
+                    <div class="w-full flex items-center justify-between pt-3 text-[11px] text-zinc-400 font-mono">
+                        <span>Sistem Lab Sekolah</span>
+                        <span class="text-purple-400 font-semibold">Tugas Pra-UKK</span>
+                    </div>
+                </div>
+
+                <div class="p-6 md:w-7/12 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <h3 class="text-lg font-bold text-white">Sipenlat &mdash; Peminjaman Alat Lab RPL</h3>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-purple-950 text-purple-300 border border-purple-700 font-semibold">Pra-UKK RPL</span>
+                        </div>
+                        <p class="text-xs text-zinc-300 leading-relaxed">
+                            Sistem pengelolaan dan peminjaman fasilitas laboratorium komputer SMK. Mengakomodasi pencatatan peminjaman alat praktik siswa, batas waktu pengembalian, status kondisi hardware, serta pelaporan inventaris berkala untuk teknisi lab.
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">PHP Native OOP</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">Bootstrap</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer"
+                            class="px-4 py-2 rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs transition inline-flex items-center gap-1.5 shadow">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>Repositori GitHub</span>
+                        </a>
+                        <button onclick="openModal('sipenlat')"
+                            class="px-3 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold transition border border-zinc-700">
+                            🔍 Detail Fitur Lab
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- Section: Kompetensi Keahlian & Tech Stack -->
+        <section class="card-custom rounded-2xl p-6 sm:p-8 space-y-6">
+            <div>
+                <h2 class="text-lg font-bold text-white tracking-tight">Kompetensi Teknis Siswa RPL</h2>
+                <p class="text-xs text-zinc-400">Teknologi dan perangkat lunak yang telah dipelajari dan diimplementasikan dalam proyek nyata.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div class="p-4 bg-zinc-900/70 rounded-xl border border-zinc-800 space-y-2">
+                    <div class="font-bold text-emerald-400 font-mono flex items-center gap-1.5">
+                        <span>⚙️ Backend & Database</span>
+                    </div>
+                    <ul class="space-y-1 text-zinc-300">
+                        <li>&bull; PHP 8.x (OOP & MVC)</li>
+                        <li>&bull; Laravel 11 Framework</li>
+                        <li>&bull; MySQL & SQLite Relational DB</li>
+                        <li>&bull; RESTful API & Authentication</li>
+                        <li>&bull; Supabase Database</li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-zinc-900/70 rounded-xl border border-zinc-800 space-y-2">
+                    <div class="font-bold text-sky-400 font-mono flex items-center gap-1.5">
+                        <span>🎨 Frontend Development</span>
+                    </div>
+                    <ul class="space-y-1 text-zinc-300">
+                        <li>&bull; HTML5 & Semantics</li>
+                        <li>&bull; Tailwind CSS & Bootstrap</li>
+                        <li>&bull; JavaScript ES6+ & TypeScript</li>
+                        <li>&bull; React & Next.js Framework</li>
+                        <li>&bull; Responsive UI / Mobile First</li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-zinc-900/70 rounded-xl border border-zinc-800 space-y-2">
+                    <div class="font-bold text-amber-400 font-mono flex items-center gap-1.5">
+                        <span>🛠️ Tools & Lingkungan Kerja</span>
+                    </div>
+                    <ul class="space-y-1 text-zinc-300">
+                        <li>&bull; Git & GitHub Version Control</li>
+                        <li>&bull; VS Code & Terminal CLI</li>
+                        <li>&bull; Postman (API Testing)</li>
+                        <li>&bull; XAMPP & Composer</li>
+                        <li>&bull; Figma (UI/UX Wireframing)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Pengalaman Organisasi & Sertifikasi -->
+        <section class="card-custom rounded-2xl p-6 sm:p-8 space-y-6">
+            <div>
+                <h2 class="text-lg font-bold text-white tracking-tight">Pengalaman Belajar & Sertifikasi</h2>
+                <p class="text-xs text-zinc-400">Rekam jejak keaktifan siswa di sekolah dan kompetisi pengembangan perangkat lunak.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <!-- Pengalaman -->
+                <div class="space-y-3">
+                    <h3 class="font-semibold text-zinc-200 font-mono">📋 Pengalaman di Sekolah:</h3>
+                    
+                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-white">Ketua Kelas XI RPL</span>
+                            <span class="text-[11px] font-mono text-zinc-400">2024 &mdash; Sekarang</span>
+                        </div>
+                        <p class="text-zinc-400">Memimpin koordinasi pembelajaran produktif RPL di SMK Darus Sa'adah Bogor dan menjembatani komunikasi kelas dengan guru produktif.</p>
+                    </div>
+
+                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-white">Peserta Lomba Web EXASTI 2.0</span>
+                            <span class="text-[11px] font-mono text-zinc-400">UNJ (2024)</span>
+                        </div>
+                        <p class="text-zinc-400">Mewakili tim SyntaxError dalam kompetisi inovasi digital dengan merancang platform pelaporan fasilitas kota LaporKuy.</p>
+                    </div>
+                </div>
+
+                <!-- Sertifikat -->
+                <div class="space-y-3">
+                    <h3 class="font-semibold text-zinc-200 font-mono">🎓 Sertifikat Terverifikasi:</h3>
+
+                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-white">Fundamentals of UI Design</div>
+                            <div class="text-[11px] text-zinc-400">UI/UX Development Academy &bull; 2024</div>
+                        </div>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">Verified</span>
+                    </div>
+
+                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-white">Microsoft Azure Fundamentals</div>
+                            <div class="text-[11px] text-zinc-400">Microsoft Learn Challenge &bull; 2024</div>
+                        </div>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">Verified</span>
+                    </div>
+
+                    <div class="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-white">Dasar Pemrograman Web</div>
+                            <div class="text-[11px] text-zinc-400">Dicoding Indonesia &bull; 2023</div>
+                        </div>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">Verified</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-zinc-500 py-6 space-y-1 font-mono">
+            <p>&copy; 2026 Arya Putra Pratama &bull; Rekayasa Perangkat Lunak &bull; SMK Darus Sa'adah Bogor</p>
+            <p class="text-[11px] text-zinc-600">Disusun sebagai bahan evaluasi tugas sekolah, portofolio magang industri (PKL), dan persiapan Uji Kompetensi Keahlian.</p>
+        </footer>
+
+    </div>
+
+    <!-- Modal Popup Detail Fitur Proyek -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4">
+        <div class="card-custom bg-zinc-900 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl border border-zinc-700">
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+                <h3 id="modal-title" class="text-base font-bold text-white font-mono">Detail Fitur Aplikasi</h3>
+                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-lg font-bold">&times;</button>
+            </div>
+            <div id="modal-content" class="text-xs text-zinc-300 space-y-3 leading-relaxed">
+                <!-- Injected via JavaScript -->
+            </div>
+            <div class="pt-3 border-t border-zinc-800 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-semibold">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const details = {
+            onhadir: {
+                title: "OnHadir — Fitur Lengkap Sistem UKK Presensi",
+                html: `
+                    <div class="space-y-2">
+                        <p class="font-semibold text-emerald-400">Modul & Alur Sistem:</p>
+                        <ul class="list-disc pl-4 space-y-1 text-zinc-300">
+                            <li><strong>Scanner Presensi Real-Time:</strong> Mengakses kamera laptop/webcam via HTML5-QRCode dengan waktu respon baca di bawah 300ms.</li>
+                            <li><strong>1-Click Presensi Massal:</strong> Memungkinkan guru/wali kelas menandai seluruh siswa yang hadir dalam 1 kali klik dan langsung tersimpan ke database.</li>
+                            <li><strong>Perhitungan Poin & Keterlambatan:</strong> Logika otomatis menghitung menit keterlambatan dari batas jam sekolah dan mengakumulasi poin kompensasi.</li>
+                            <li><strong>Portal Wali Murid Mandiri:</strong> Orang tua siswa cukup memasukkan NIS untuk melihat rekap kehadiran anak secara transparan.</li>
+                            <li><strong>Generator Kartu Pelajar CR80:</strong> Layout presisi CSS printing standar ISO 7810 ID-1 (8 kartu per kertas A4) lengkap dengan barcode siswa.</li>
+                        </ul>
+                        <div class="mt-3 p-2.5 rounded bg-zinc-950 border border-zinc-800 font-mono text-[11px]">
+                            <strong>Login Penguji:</strong> Admin (arrxptrr19@gmail.com / arya7777), Petugas (suteja77@gmail.com / suteja7777)
+                        </div>
+                    </div>
+                `
+            },
+            laporkuy: {
+                title: "LaporKuy — Inovasi Kompetisi UNJ EXASTI 2.0",
+                html: `
+                    <div class="space-y-2">
+                        <p class="font-semibold text-sky-400">Fitur & Arsitektur Inovasi:</p>
+                        <ul class="list-disc pl-4 space-y-1 text-zinc-300">
+                            <li><strong>AI Verification:</strong> Menganalisis keaslian foto laporan secara otomatis guna mencegah spam gambar tidak valid dari internet.</li>
+                            <li><strong>Radius Deduplication (200m):</strong> Mencegah penumpukan laporan ganda untuk lubang jalan atau kerusakan yang sama di titik GPS berdekatan.</li>
+                            <li><strong>Geospatial Auto-Routing:</strong> Mengarahkan tiket laporan secara otomatis ke dashboard suku dinas wilayah terkait.</li>
+                            <li><strong>Gamifikasi Partisipasi:</strong> Memberikan poin kontribusi dan badge untuk memotivasi warga menjaga infrastruktur lingkungan.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            kedaiarya: {
+                title: "Kedai Arya — Alur Transaksi POS Kafe",
+                html: `
+                    <div class="space-y-2">
+                        <p class="font-semibold text-amber-400">Kemampuan Sistem Kasir:</p>
+                        <ul class="list-disc pl-4 space-y-1 text-zinc-300">
+                            <li><strong>Keranjang AJAX:</strong> Tambah/kurang item pesanan secara instan tanpa reload halaman browser.</li>
+                            <li><strong>Katalog Dinamis:</strong> Filter kategori minuman (kopi, non-kopi) dan makanan dengan update stok real-time.</li>
+                            <li><strong>Perhitungan Kasir Otomatis:</strong> Subtotal, pajak, diskon promo, dan perhitungan kembalian uang tunai.</li>
+                            <li><strong>Cetak Struk:</strong> Format struk struk kasir termal 58mm / 80mm siap cetak ke printer kasir.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            sipenlat: {
+                title: "Sipenlat — Modul Inventarisasi Lab RPL",
+                html: `
+                    <div class="space-y-2">
+                        <p class="font-semibold text-purple-400">Manajemen Alat Laboratorium:</p>
+                        <ul class="list-disc pl-4 space-y-1 text-zinc-300">
+                            <li><strong>Pencatatan Peminjaman:</strong> Validasi nomor induk siswa, kode alat, tanggal pinjam, dan estimasi kembali.</li>
+                            <li><strong>Monitoring Status:</strong> Pelacakan alat yang sedang dipinjam, terlambat kembali, atau rusak.</li>
+                            <li><strong>Laporan Inventaris:</strong> Rekap bulanan untuk kebutuhan audit barang laboratorium oleh kepala bengkel/jurusan RPL.</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(key) {
+            const data = details[key];
+            if (!data) return;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-content').innerHTML = data.html;
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function filterProjects(cat) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'text-white'));
+            const activeBtn = document.getElementById('btn-' + cat);
+            if (activeBtn) activeBtn.classList.add('active', 'text-white');
+
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                if (cat === 'all') {
+                    item.style.display = 'flex';
+                } else {
+                    const itemCat = item.getAttribute('data-category');
+                    item.style.display = (itemCat === cat) ? 'flex' : 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
