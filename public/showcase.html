@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya Putra Pratama — Digital Projects & Systems Showcase</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            emerald: '#00D68F',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080B0A;
+            color: #F4F6F5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glow-emerald {
+            box-shadow: 0 0 50px -10px rgba(0, 214, 143, 0.25);
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 35px -5px rgba(0, 214, 143, 0.2);
+            border-color: rgba(0, 214, 143, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#080B0A] text-[#F4F6F5] selection:bg-[#00D68F] selection:text-black flex flex-col justify-between relative overflow-x-hidden">
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-b from-[#00D68F]/15 via-[#059669]/5 to-transparent blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed bottom-0 right-0 w-[500px] h-[300px] bg-[#00D68F]/10 blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- Header Navigation -->
+    <header class="border-b border-white/[0.08] backdrop-blur-md sticky top-0 z-50 bg-[#080B0A]/85">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#00D68F] to-emerald-700 flex items-center justify-center font-black text-black text-sm shadow-md">
+                    ▲
+                </span>
+                <div>
+                    <span class="font-extrabold text-sm tracking-tight text-white block">ARYA PUTRA</span>
+                    <span class="text-[10px] text-zinc-400 font-mono tracking-wider block">SMK DARUS SA'ADAH &bull; RPL</span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <span class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/30 text-[11px] text-[#00D68F] font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-[#00D68F] animate-pulse"></span>
+                    <span>Ready for Review</span>
+                </span>
+                <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer" 
+                    class="px-3.5 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-semibold text-white transition flex items-center space-x-1.5">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 flex-1 w-full space-y-12">
+        
+        <!-- Hero Section -->
+        <section class="text-center max-w-3xl mx-auto space-y-4">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#101714] border border-[#00D68F]/30 text-xs font-semibold text-[#00D68F]">
+                <span class="w-2 h-2 rounded-full bg-[#00D68F]"></span>
+                <span>Portofolio Hasil Karya Siswa RPL &bull; SMK Darus Sa'adah</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                Kumpulan Web & Sistem Digital <br class="hidden sm:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00D68F] via-emerald-300 to-teal-200">
+                    Arya Putra Pratama
+                </span>
+            </h1>
+            <p class="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+                Dokumentasi dan repositori sistem aplikasi berbasis web yang telah dikembangkan untuk Uji Kompetensi Keahlian (UKK), kompetisi inovasi digital, serta proyek mandiri kejuruan.
+            </p>
+        </section>
+
+        <!-- Project Cards Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card 1: OnHadir (Featured Masterpiece) -->
+            <article class="rounded-3xl bg-[#0F1512] border border-white/[0.08] p-6 flex flex-col justify-between space-y-6 glow-card transition-all duration-300 relative group overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-[#00D68F]/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/30 text-[11px] font-mono text-[#00D68F] font-bold">
+                            UKK RPL 100% Compliant
+                        </span>
+                        <span class="text-[11px] text-zinc-400 font-mono">v1.2 (Active)</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-extrabold text-white tracking-tight group-hover:text-[#00D68F] transition-colors flex items-center space-x-2">
+                            <span>🎓 OnHadir</span>
+                        </h2>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Sistem Informasi Presensi Siswa & QR Smartcard. Dilengkapi scanner barcode instan via kamera, batch input 1-klik, sistem kompensasi jam pelajaran, portal mandiri wali murid, dan mesin cetak Kartu Pelajar CR80 standar presisi A4.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-0.5 rounded-md bg-[#00D68F]/10 border border-[#00D68F]/20 text-[11px] font-mono text-[#00D68F]">Laravel 11</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">Tailwind CSS 3.4</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">SQLite / MySQL</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">HTML5-QRCode</span>
+                    </div>
+
+                    <!-- Demo Credentials Box -->
+                    <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] text-[11px] space-y-1 font-mono text-zinc-400">
+                        <div class="text-[#00D68F] font-bold text-[10px] uppercase tracking-wider">Kredensial Akun Default:</div>
+                        <div>Admin: <span class="text-zinc-200">arrxptrr19@gmail.com</span> / <span class="text-zinc-200">arya7777</span></div>
+                        <div>Petugas: <span class="text-zinc-200">suteja77@gmail.com</span> / <span class="text-zinc-200">suteja7777</span></div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2 border-t border-white/[0.06]">
+                    <a href="/" target="_blank"
+                        class="w-full py-2.5 px-4 rounded-xl bg-[#00D68F] hover:bg-[#00D68F]/90 text-black font-bold text-xs transition flex items-center justify-center space-x-1.5 shadow-md shadow-[#00D68F]/20">
+                        <span>Buka Sistem OnHadir</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <div class="flex items-center space-x-2">
+                        <a href="/cek-presensi" target="_blank"
+                            class="flex-1 py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-semibold text-zinc-300 hover:text-white transition text-center">
+                            Portal Wali Murid
+                        </a>
+                        <a href="https://github.com/AryaTech67/sistem-absensi-siswa" target="_blank" rel="noopener noreferrer"
+                            class="py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-semibold text-zinc-300 hover:text-white transition flex items-center justify-center">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2: LaporKuy (Kompetisi UNJ) -->
+            <article class="rounded-3xl bg-[#0F1512] border border-white/[0.08] p-6 flex flex-col justify-between space-y-6 glow-card transition-all duration-300 relative group overflow-hidden">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-950/80 border border-sky-500/30 text-[11px] font-mono text-sky-400 font-bold">
+                            Lomba EXASTI 2.0 UNJ
+                        </span>
+                        <span class="text-[11px] text-zinc-400 font-mono">SyntaxError Team</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-extrabold text-white tracking-tight group-hover:text-sky-400 transition-colors flex items-center space-x-2">
+                            <span>📢 LaporKuy</span>
+                        </h2>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Platform layanan pengaduan dan aspirasi masyarakat/siswa berbasis web. Dilengkapi sistem klasifikasi AI visual, deteksi pencegahan laporan ganda radius GPS 200m, dan dashboard pemantauan SLA dinas secara transparan.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-0.5 rounded-md bg-sky-500/10 border border-sky-500/20 text-[11px] font-mono text-sky-400">Next.js 14</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">Supabase</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">TypeScript</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">Tailwind CSS</span>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] text-[11px] space-y-1 text-zinc-400">
+                        <div class="text-sky-400 font-bold text-[10px] uppercase tracking-wider">Highlight Fitur:</div>
+                        <div>&bull; AI Quick Report & Geolocation Radius</div>
+                        <div>&bull; Tiket Pengaduan Anonim & Real-time Timeline</div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2 border-t border-white/[0.06]">
+                    <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer"
+                        class="w-full py-2.5 px-4 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 text-white font-bold text-xs transition flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        <span>Lihat Repositori Proyek</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Kedai Arya (E-commerce / POS) -->
+            <article class="rounded-3xl bg-[#0F1512] border border-white/[0.08] p-6 flex flex-col justify-between space-y-6 glow-card transition-all duration-300 relative group overflow-hidden">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-amber-950/80 border border-amber-500/30 text-[11px] font-mono text-amber-400 font-bold">
+                            E-Commerce & POS
+                        </span>
+                        <span class="text-[11px] text-zinc-400 font-mono">Fullstack</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-extrabold text-white tracking-tight group-hover:text-amber-400 transition-colors flex items-center space-x-2">
+                            <span>☕ Kedai Arya</span>
+                        </h2>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Aplikasi pemesanan digital dan Point of Sales (POS) kasir kafe berbasis web. Menyediakan katalog menu responsif, keranjang belanja interaktif (AJAX Cart), manajemen nomor meja, serta cetak struk nota transaksi.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-400">PHP / Laravel</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">JavaScript AJAX</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">Tailwind CSS</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] font-mono text-zinc-300">MySQL</span>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] text-[11px] space-y-1 text-zinc-400">
+                        <div class="text-amber-400 font-bold text-[10px] uppercase tracking-wider">Highlight Fitur:</div>
+                        <div>&bull; Real-time Cart Calculation & Diskon</div>
+                        <div>&bull; Dashboard Laporan Penjualan Harian</div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2 border-t border-white/[0.06]">
+                    <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer"
+                        class="w-full py-2.5 px-4 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 text-white font-bold text-xs transition flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        <span>Lihat Repositori Proyek</span>
+                    </a>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Developer Bio & Tech Competencies -->
+        <section class="rounded-3xl bg-[#0F1512] border border-white/[0.08] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <span class="text-xs font-mono text-[#00D68F] uppercase tracking-wider font-semibold">Profil Pengembang</span>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-white">Arya Putra Pratama</h3>
+                <p class="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
+                    Siswa Program Keahlian Rekayasa Perangkat Lunak (RPL) SMK Darus Sa'adah Bogor. Memiliki fokus pada Fullstack Web Development (Laravel, Next.js, TypeScript, Tailwind CSS, dan arsitektur database relasional).
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
+                <a href="https://github.com/AryaTech67" target="_blank" rel="noopener noreferrer"
+                    class="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 text-white font-bold text-xs transition text-center flex items-center justify-center space-x-2">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>Kunjungi GitHub</span>
+                </a>
+                <a href="mailto:arrxptrr19@gmail.com"
+                    class="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#00D68F] hover:bg-[#00D68F]/90 text-black font-bold text-xs transition text-center">
+                    Hubungi Email
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/[0.08] py-8 text-center text-xs text-zinc-500 space-y-2 bg-[#080B0A]">
+        <p>&copy; 2026 Arya Putra Pratama &bull; SMK Darus Sa'adah Bogor &bull; Rekayasa Perangkat Lunak</p>
+        <p class="text-[11px] text-zinc-600">Dikembangkan secara mandiri menggunakan teknologi web modern.</p>
+    </footer>
+
+</body>
+</html>

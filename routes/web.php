@@ -27,6 +27,18 @@ Route::get('/', function () {
         : redirect()->route('login');
 })->name('home');
 
+// Portal Showcase Proyek & Web Hub Arya Putra Pratama (Untuk Penilaian Sekolah)
+Route::get('/showcase', function () {
+    return response(file_get_contents(public_path('showcase.html')), 200, [
+        'Content-Type' => 'text/html; charset=UTF-8'
+    ]);
+})->name('showcase');
+Route::get('/projects', function () {
+    return response(file_get_contents(public_path('showcase.html')), 200, [
+        'Content-Type' => 'text/html; charset=UTF-8'
+    ]);
+})->name('projects');
+
 // Portal Publik: Cek Mandiri Kehadiran Siswa (Untuk Siswa & Orang Tua)
 Route::get('/cek-presensi', [StudentController::class, 'publicCheck'])->name('public.check');
 
